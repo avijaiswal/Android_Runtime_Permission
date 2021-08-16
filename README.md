@@ -24,18 +24,33 @@ Supports major runtime permission like : **CAMERA, READ_EXTERNAL_STORAGE, WRITE_
 
 Steps to use this library 
 
-STEP 1: Add permissions in Manifest.xml 
+STEP 1. Add the JitPack repository to your build file
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+
+STEP 2. Add the dependency
+      
+      dependencies {
+	        implementation 'com.github.avijaiswal:Android_Runtime_Permission:1.0.0'
+	}
+
+STEP 3: Add permissions in Manifest.xml 
 
        <uses-permission android:name="android.permission.CAMERA" />
 
-STEP 2: Register callback listner in OnCreate() of your Activity or Fragment or From the file where you want to get the callbacks and don't forgot to set is as null 
+STEP 4: Register callback listner in OnCreate() of your Activity or Fragment or From the file where you want to get the callbacks and don't forgot to set is as null 
 with the same reference from you have registed it when your activity or fragments gets destroyed
 
         MakePermissionRequest.getInstance().registerPermissionCallback(this)
  
         MakePermissionRequest.getInstance().registerPermissionCallback(null)   
 
-STEP 3: Override callbacks methods and handle your logic accordingly 
+STEP 5: Override callbacks methods and handle your logic accordingly 
 
 
     override fun onPermissionGranted(permissionType: PermissionType?) {
@@ -55,7 +70,7 @@ STEP 3: Override callbacks methods and handle your logic accordingly
      //Todo handle permission rational state i.e show custom dialog before asking permission second time or to show custom dialog before moving to settings if isAlwaysHide is true
     }
 
-STEP 4: Initiate permission request like below 
+STEP 6: Initiate permission request like below 
 
      MakePermissionRequest.getInstance().requestForPermission(PermissionType.CAMERA, this, true)
  
@@ -63,7 +78,7 @@ STEP 4: Initiate permission request like below
 
 To handle multiple request at a once follow the same steps from STEP 1 to STEP 3 and make request like below 
 
- STEP 4:    
+ STEP 6:    
            
            val requestType = arrayOf(PermissionType.CAMERA, PermissionType.CONTACTS_GROUP, PermissionType.STORAGE_GROUP, PermissionType.SMS_GROUP)
           
@@ -71,7 +86,7 @@ To handle multiple request at a once follow the same steps from STEP 1 to STEP 3
          
 
 
-STEP 5: In your Activity or Fragment override onRequestPermissionsResult method to handle result and Call MakePermissionRequest method onRequestPermissionsResult
+STEP 7: In your Activity or Fragment override onRequestPermissionsResult method to handle result and Call MakePermissionRequest method onRequestPermissionsResult
         like below
            
 
