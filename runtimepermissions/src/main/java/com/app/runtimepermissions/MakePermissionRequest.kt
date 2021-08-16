@@ -4,8 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.provider.Settings
 import android.util.Log
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import com.app.runtimepermission.PermissionResultHelper
 import com.app.runtimepermission.constant.PermissionUri
@@ -37,6 +39,7 @@ class MakePermissionRequest:PermissionResultHelper() {
     //creating singleton object of this class
     companion object {
         val TAG=MakePermissionRequest::class.simpleName
+        const val SETTINGS_INTENT_REQUEST_CODE = 5000
 
         //declaring instance variable of this class as volatile for thread safety
         @Volatile private var instance: MakePermissionRequest? = null
@@ -145,7 +148,7 @@ class MakePermissionRequest:PermissionResultHelper() {
 
             PermissionType.WRITE_CONTACTS -> {
                 requestCode = PermissionCode.WRITE_CONTACTS.requestCode
-                initiatePermissionRequest(PermissionUri.READ_CONTACTS.requestUri, activity, PermissionType.WRITE_CONTACTS, isCheckForRationState)
+                initiatePermissionRequest(PermissionUri.WRITE_CONTACTS.requestUri, activity, PermissionType.WRITE_CONTACTS, isCheckForRationState)
             }
 
             PermissionType.GET_ACCOUNT -> {
@@ -235,12 +238,12 @@ class MakePermissionRequest:PermissionResultHelper() {
 
             PermissionType.ADD_VOICE_MAIL -> {
                 requestCode = PermissionCode.ADD_VOICE_MAIL.requestCode
-                initiatePermissionRequest(PermissionUri.RECORD_AUDIO.requestUri, activity, PermissionType.ADD_VOICE_MAIL, isCheckForRationState)
+                initiatePermissionRequest(PermissionUri.ADD_VOICEMAIL.requestUri, activity, PermissionType.ADD_VOICE_MAIL, isCheckForRationState)
             }
 
             PermissionType.WRITE_CALL_LOG -> {
                 requestCode = PermissionCode.WRITE_CALL_LOG.requestCode
-                initiatePermissionRequest(PermissionUri.RECORD_AUDIO.requestUri, activity, PermissionType.WRITE_CALL_LOG, isCheckForRationState)
+                initiatePermissionRequest(PermissionUri.WRITE_CALL_LOG.requestUri, activity, PermissionType.WRITE_CALL_LOG, isCheckForRationState)
             }
 
             PermissionType.SENSOR -> {
@@ -265,7 +268,7 @@ class MakePermissionRequest:PermissionResultHelper() {
      *
      * Below parameter is used show some custom dialog to user when permission is in rational state
      * pass this parameter value as false when user takes positive action from the custom UI to take permission
-     * @param isCheckForRationState //value should be true to show custom UI in permission rational state else false
+     * @param isCheckForRationState //value should be true to show custom UI in permission rational state else false (it will directly request for permission without checking rational state)
      *
      * @logic
      * <!--
@@ -308,7 +311,7 @@ class MakePermissionRequest:PermissionResultHelper() {
                 }
 
                 PermissionType.WRITE_STORAGE -> {
-                    addMultiplePermissionUri(PermissionUri.READ_STORAGE.requestUri, activity)
+                    addMultiplePermissionUri(PermissionUri.WRITE_STORAGE.requestUri, activity)
                 }
 
                 PermissionType.CALENDER_GROUP -> {
@@ -429,6 +432,7 @@ class MakePermissionRequest:PermissionResultHelper() {
             val finalRequest = permissionUri.toTypedArray();
             takePermission(finalRequest, requestCode, activity)
         }else{
+            Log.d(TAG, "Permissions granted")
             iCallBack?.onMultiplePermissionResult(true, permissionType.toList(), null, false)
         }
     }
@@ -457,9 +461,11 @@ class MakePermissionRequest:PermissionResultHelper() {
         if (isPermissionGranted(permissionUri, activity)) {
             //already have permission
             iCallBack?.onPermissionGranted(permissionType)
+            Log.d(TAG, permissionUri+" permissions granted ")
             return null
         } else if (isCheckForRationState && isShowRationPermission(permissionUri, activity)) {
             //permission is in rational state i.e. user already denied it first time
+            Log.d(TAG, permissionUri+" is in rational state")
             iCallBack?.onShowRationalPermissionDialog(permissionType, false)
             return null
         } else //returning permission uri object
@@ -514,11 +520,14 @@ class MakePermissionRequest:PermissionResultHelper() {
         {
             //already have all the permissions
             iCallBack?.onPermissionGranted(permissionType)
+            Log.d(TAG, "all permission has granted")
+
             return null
         }else if(isCheckForRationState && isShowRational)
         {
             //some of requested permision is in ratioal state
             iCallBack?.onShowRationalPermissionDialog(permissionType, false)
+            Log.d(TAG, permissionType.name+ "Permission is in rational state")
             return null
         }
         else //returning permissions uri object
@@ -588,6 +597,11 @@ class MakePermissionRequest:PermissionResultHelper() {
             activity: Activity
     ) {
         onRequestPermissionsResult(requestCode, permissions, grantResults, iCallBack, activity)
+    }
+
+    fun openSettings(activity: Activity)
+    {
+        startActivityForResult(activity,Intent(Settings.ACTION_SETTINGS), SETTINGS_INTENT_REQUEST_CODE,null)
     }
 
 }

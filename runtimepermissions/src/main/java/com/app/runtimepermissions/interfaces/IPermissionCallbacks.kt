@@ -6,7 +6,7 @@ import com.app.runtimepermissions.constant.PermissionType
  * <Use of interface>
  * <!--
  * This interface is used to handle callbacks of runtime permission request
- * Classes that uses PermissionUtil must implement this interface to handle callbacks
+ * Classes that uses PermissionUtil to initiate permission request must implement this interface to handle callbacks
  * -->
  */
 interface IPermissionCallbacks {

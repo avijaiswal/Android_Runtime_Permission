@@ -2,7 +2,9 @@ package com.app.runtimepermission
 
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.util.Log
 import com.app.runtimepermission.constant.PermissionUri
+import com.app.runtimepermissions.MakePermissionRequest
 import com.app.runtimepermissions.constant.PermissionCode
 import com.app.runtimepermissions.constant.PermissionType
 import com.app.runtimepermissions.interfaces.IPermissionCallbacks
@@ -131,6 +133,8 @@ open class PermissionResultHelper() {
 
             PermissionCode.ADD_VOICE_MAIL.requestCode -> PermissionType.ADD_VOICE_MAIL
 
+            PermissionCode.CALL_LOG_GROUP.requestCode -> PermissionType.CALL_LOG_GROUP
+
             else-> null
         }
     }
@@ -155,18 +159,22 @@ open class PermissionResultHelper() {
 
             if(permissions.size==grantedPermissionType.size)
             {
+                Log.d(MakePermissionRequest.TAG, "Multiple permissions has granted")
                 iCallBack?.onMultiplePermissionResult(true,grantedPermissionType,deniedPermissionType,false)
-            }else if(permissions.size==deniedPermissionType.size)
-                iCallBack?.onMultiplePermissionResult(false,grantedPermissionType,deniedPermissionType,isAlwaysHidePermission(permissions,activity))
-            else
-                iCallBack?.onMultiplePermissionResult(false,grantedPermissionType,deniedPermissionType,false)
-
+            }else if(permissions.size==deniedPermissionType.size) {
+                Log.d(MakePermissionRequest.TAG, "Some of Multiple permissions has denied")
+                iCallBack?.onMultiplePermissionResult(false, grantedPermissionType, deniedPermissionType, isAlwaysHidePermission(permissions, activity))
+            }else {
+                Log.d(MakePermissionRequest.TAG, "Some of Multiple permissions has denied")
+                iCallBack?.onMultiplePermissionResult(false, grantedPermissionType, deniedPermissionType, false)
+            }
         }else{
             val deniedPermissionType= arrayListOf<PermissionType>()
             for(uri in permissions)
             {
                 getPermissionTypeByUri(uri)?.let { deniedPermissionType.add(it) }
             }
+            Log.d(MakePermissionRequest.TAG, "Multiple permission has denied")
 
             iCallBack?.onMultiplePermissionResult(false,null,deniedPermissionType,isAlwaysHidePermission(permissions,activity))
         }
@@ -260,10 +268,13 @@ open class PermissionResultHelper() {
      * @param permissionType requested permission type
      */
     private fun handlePermissionDenied(permissionType: PermissionType, permissions: Array<String>, iCallBack: IPermissionCallbacks?, activity: Activity) {
-        if(!isShowRationalPermission(permissions,activity) && isCheckForAlwaysHide)
+        if(!isShowRationalPermission(permissions,activity) && isCheckForAlwaysHide) {
+            Log.d(MakePermissionRequest.TAG, permissionType.name+ " is in always hide user clicks on don't ask me again")
             iCallBack?.onShowRationalPermissionDialog(permissionType, true)//don't ask me again state
-        else
+        }else {
+            Log.d(MakePermissionRequest.TAG, permissionType.name+ " has denied")
             iCallBack?.onPermissionDenied(permissionType)//denied
+        }
     }
 
     /**
@@ -318,6 +329,8 @@ open class PermissionResultHelper() {
             {
                 //permissionn granted
                 iCallBack?.onPermissionGranted(permissionType)
+                Log.d(MakePermissionRequest.TAG, "Permissions granted")
+
             }else
                 handlePermissionDenied(permissionType, permissions, iCallBack, activity)
         }else{

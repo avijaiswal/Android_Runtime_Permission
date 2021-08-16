@@ -105,75 +105,75 @@ enum class PermissionCode(val requestCode: Int) {
      * constant to identify request code for SEND_SMS permission
      * @see PermissionType.SEND_SMS
      */
-    SEND_SMS(5015),
+    SEND_SMS(5016),
 
     /**
      * constant to identify request code for READ_SMS permission
      * @see PermissionType.READ_SMS
      */
-    READ_SMS(5016),
+    READ_SMS(5017),
 
     /**
      * constant to identify request code for RECEIVE_SMS permission
      * @see PermissionType.RECEIVE_SMS
      */
-    RECEIVE_SMS(5017),
+    RECEIVE_SMS(5018),
 
     /**
      * constant to identify request code for RECEIVE_WAP_PUSH permission
      * @see PermissionType.RECEIVE_WAP_PUSH
      */
-    RECEIVE_WAP_PUSH(5018),
+    RECEIVE_WAP_PUSH(5019),
 
     /**
      * constant to identify request code for RECEIVE_MMS permission
      * @see PermissionType.RECEIVE_MMS
      */
-    RECEIVE_MMS(5019),
+    RECEIVE_MMS(5020),
 
 
     /**
      * constant to identify request code for SENSOR permission
      * @see PermissionType.SENSOR
      */
-    SENSOR(5020),
+    SENSOR(5021),
 
     /**
      * constant to identify request code for PHONE_GROUP permission
      * @see PermissionType.PHONE_GROUP
      */
-    PHONE_GROUP(5021),
+    PHONE_GROUP(5022),
 
     /**
      * constant to identify request code for CALL_LOG_GROUP permission
      * @see PermissionType.CALL_LOG_GROUP
      */
-    CALL_LOG_GROUP(5022),
+    CALL_LOG_GROUP(5023),
 
     /**
      * constant to identify request code for READ_PHONE_STATE permission
      * @see PermissionType.READ_PHONE_STATE
      */
-    READ_PHONE_STATE(5023),
+    READ_PHONE_STATE(5024),
 
 
     /**
      * constant to identify request code for CALL_PHONE permission
      * @see PermissionType.CALL_PHONE
      */
-    CALL_PHONE(5024),
+    CALL_PHONE(5025),
 
     /**
      * constant to identify request code for READ_CALL_LOG permission
      * @see PermissionType.READ_CALL_LOG
      */
-    READ_CALL_LOG(5025),
+    READ_CALL_LOG(5026),
 
     /**
      * constant to identify request code for WRITE_CALL_LOG permission
      * @see PermissionType.WRITE_CALL_LOG
      */
-    WRITE_CALL_LOG(5026),
+    WRITE_CALL_LOG(5027),
 
 
 
@@ -181,15 +181,15 @@ enum class PermissionCode(val requestCode: Int) {
      * constant to identify request code for ADD_VOICE_MAIL permission
      * @see PermissionType.ADD_VOICE_MAIL
      */
-    ADD_VOICE_MAIL(5027),
+    ADD_VOICE_MAIL(5028),
 
     /**
      * constant to identify request code for USE_SIP permission
      * @see PermissionType.USE_SIP
      */
-    USE_SIP(5028),
+    USE_SIP(5029),
 
     //constant to identify if user request multiple permission at once
-    MULTIPLE_PERMISSION_REQUEST_CODE(5029)
+    MULTIPLE_PERMISSION_REQUEST_CODE(5030)
 
 }
