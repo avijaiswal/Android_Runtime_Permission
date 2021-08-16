@@ -36,7 +36,7 @@ STEP 1. Add the JitPack repository to your build file
 STEP 2. Add the dependency
       
       dependencies {
-	        implementation 'com.github.avijaiswal:Android_Runtime_Permission:1.0.0'
+	        implementation 'com.github.avijaiswal:Android_Runtime_Permission:1.0.1'
 	}
 
 
