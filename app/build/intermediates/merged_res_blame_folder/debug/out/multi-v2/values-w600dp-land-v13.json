@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/appinventiv/Desktop/Permissions/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w600dp-land-v13/values-w600dp-land-v13.xml",
+            "map": [
+                {
+                    "source": "/home/appinventiv/.gradle/caches/transforms-2/files-2.1/ff70d00bd6233fab097e1b2ecb097a0b/material-1.4.0/res/values-w600dp-land-v13/values-w600dp-land-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "54",
+                        "endOffsets": "105"
+                    }
+                }
+            ]
+        }
+    ]
+}

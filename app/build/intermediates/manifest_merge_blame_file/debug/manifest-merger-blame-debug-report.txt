@@ -1,0 +1,141 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.app.permissions"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+8-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.CAMERA" />
+11-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:5:5-65
+11-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:5:22-62
+12    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+12-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:7:5-70
+12-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:7:22-68
+13    <uses-permission android:name="android.permission.BODY_SENSORS" />
+13-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:9:5-70
+13-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:9:22-68
+14
+15    <!-- phone group permission start -->
+16    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+16-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:12:5-71
+16-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:12:22-69
+17    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+17-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:13:5-72
+17-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:13:22-70
+18    <uses-permission android:name="android.permission.CALL_PHONE" />
+18-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:14:5-68
+18-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:14:22-66
+19    <uses-permission android:name="android.permission.USE_SIP" />
+19-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:15:5-65
+19-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:15:22-63
+20    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+20-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:16:5-74
+20-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:16:22-72
+21    <uses-permission android:name="android.permission.ADD_VOICEMAIL" />
+21-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:17:5-71
+21-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:17:22-69
+22    <!-- phone group permission end -->
+23
+24
+25    <!-- location group permission start -->
+26    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+26-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:21:5-81
+26-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:21:22-78
+27    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+27-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:22:5-79
+27-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:22:22-76
+28    <!-- location group permission end -->
+29
+30
+31    <!-- storage group permission start -->
+32
+33    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+33-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:27:5-79
+33-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:27:22-77
+34    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+34-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:28:5-80
+34-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:28:22-78
+35    <!-- storage group permission end -->
+36
+37
+38    <!-- calendar group permission start -->
+39    <uses-permission android:name="android.permission.READ_CALENDAR" />
+39-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:32:5-71
+39-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:32:22-69
+40    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+40-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:33:5-72
+40-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:33:22-70
+41    <!-- calendar group permission end -->
+42
+43
+44    <!-- Cotancts group permission start -->
+45    <uses-permission android:name="android.permission.READ_CONTACTS" />
+45-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:37:5-71
+45-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:37:22-69
+46    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+46-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:38:5-72
+46-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:38:22-70
+47    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+47-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:39:5-70
+47-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:39:22-68
+48    <!-- Cotancts group permission end -->
+49
+50
+51    <!-- SMS group permission start -->
+52    <uses-permission android:name="android.permission.READ_SMS" />
+52-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:43:5-66
+52-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:43:22-64
+53    <uses-permission android:name="android.permission.SEND_SMS" />
+53-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:44:5-66
+53-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:44:22-64
+54    <uses-permission android:name="android.permission.RECEIVE_MMS" />
+54-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:45:5-69
+54-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:45:22-67
+55    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+55-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:46:5-69
+55-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:46:22-67
+56    <uses-permission android:name="android.permission.RECEIVE_WAP_PUSH" />
+56-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:47:5-74
+56-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:47:22-72
+57
+58    <!-- SMS group permission ends -->
+59    <application
+59-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:51:5-65:19
+60        android:allowBackup="true"
+60-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:52:9-35
+61        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+61-->[androidx.core:core:1.6.0] /home/appinventiv/.gradle/caches/transforms-2/files-2.1/ad49f5c052fa7ffed92bfc57c6a902b2/core-1.6.0/AndroidManifest.xml:24:18-86
+62        android:debuggable="true"
+63        android:extractNativeLibs="false"
+64        android:icon="@mipmap/ic_launcher"
+64-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:53:9-43
+65        android:label="@string/app_name"
+65-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:54:9-41
+66        android:roundIcon="@mipmap/ic_launcher_round"
+66-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:55:9-54
+67        android:supportsRtl="true"
+67-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:56:9-35
+68        android:theme="@style/Theme.Permissions" >
+68-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:57:9-49
+69        <activity android:name="com.app.permissions.MainActivity" >
+69-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:58:9-64:20
+69-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:58:19-47
+70            <intent-filter>
+70-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:59:13-63:29
+71                <action android:name="android.intent.action.MAIN" />
+71-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:60:17-69
+71-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:60:25-66
+72
+73                <category android:name="android.intent.category.LAUNCHER" />
+73-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:62:17-77
+73-->/home/appinventiv/Desktop/Permissions/app/src/main/AndroidManifest.xml:62:27-74
+74            </intent-filter>
+75        </activity>
+76    </application>
+77
+78</manifest>

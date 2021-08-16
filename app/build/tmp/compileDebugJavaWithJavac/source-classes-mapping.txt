@@ -1,0 +1,2 @@
+com/app/permissions/BuildConfig.java
+ com.app.permissions.BuildConfig
