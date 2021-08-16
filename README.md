@@ -24,6 +24,23 @@ Supports major runtime permission like : **CAMERA, READ_EXTERNAL_STORAGE, WRITE_
 
 Steps to use this library 
 
+STEP 1. Add the JitPack repository to your build file
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+
+STEP 2. Add the dependency
+      
+      dependencies {
+	        implementation 'com.github.avijaiswal:Android_Runtime_Permission:1.0.0'
+	}
+
+
+
 STEP 3: Add permissions in Manifest.xml 
 
        <uses-permission android:name="android.permission.CAMERA" />
