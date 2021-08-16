@@ -81,7 +81,7 @@ STEP 5: In your Activity or Fragment override onRequestPermissionsResult method 
             grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        permissionUtil.onRequestPermissionsResult(requestCode, permissions as Array<String>,grantResults,this)
+        MakePermissionRequest.getInstance().onRequestPermissionsResult(requestCode, permissions as Array<String>,grantResults,this)
     }
 
 Open source
