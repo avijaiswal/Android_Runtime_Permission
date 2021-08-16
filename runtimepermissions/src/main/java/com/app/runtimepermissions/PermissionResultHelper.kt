@@ -172,6 +172,9 @@ open class PermissionResultHelper() {
         }
     }
 
+    /**
+     * Method to check if multiple permission request in always invisible state
+     */
     private fun isAlwaysHidePermission(permissions: Array<String>, activity: Activity): Boolean {
         for (permission in permissions) {
             if (activity.shouldShowRequestPermissionRationale(permission)) {
