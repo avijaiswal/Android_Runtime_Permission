@@ -70,4 +70,18 @@ To handle multiple request at a once follow the same steps from STEP 1 to STEP 3
             MakePermissionRequest.getInstance().requestForPermission(requestType, this, true)
          
 
+
+STEP 5: In your Activity or Fragment override onRequestPermissionsResult method to handle result and Call MakePermissionRequest method onRequestPermissionsResult
+        like below
+           
+
+           override fun onRequestPermissionsResult(
+            requestCode: Int,
+            permissions: Array<out String>,
+            grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        permissionUtil.onRequestPermissionsResult(requestCode, permissions as Array<String>,grantResults,this)
+    }
+
 Open source
