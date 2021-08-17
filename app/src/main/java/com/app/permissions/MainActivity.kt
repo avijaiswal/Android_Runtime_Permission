@@ -129,9 +129,6 @@ class MainActivity : AppCompatActivity(), IPermissionCallbacks {
             permissionUtil.requestForPermission(PermissionType.READ_PHONE_STATE, this, true)
         })
 
-        add_voice_mail.setOnClickListener({
-            permissionUtil.requestForPermission(PermissionType.ADD_VOICE_MAIL, this, true)
-        })
 
         multi.setOnClickListener({
             val requestType = arrayOf(PermissionType.CAMERA, PermissionType.CONTACTS_GROUP, PermissionType.STORAGE_GROUP, PermissionType.SMS_GROUP)
