@@ -101,6 +101,7 @@ class MakePermissionRequest:PermissionResultHelper() {
                 initiatePermissionRequest(arrayOf(PermissionUri.ACCESS_COARSE_LOCATION.requestUri,
                         PermissionUri.ACCESS_FINE_LOCATION.requestUri), activity, PermissionType.LOCATION_GROUP, isCheckForRationState)
             }
+
             PermissionType.STORAGE_GROUP -> {
                 requestCode = PermissionCode.STORAGE_GROUP.requestCode
                 initiatePermissionRequest(arrayOf(PermissionUri.READ_STORAGE.requestUri,
@@ -160,7 +161,6 @@ class MakePermissionRequest:PermissionResultHelper() {
 
             PermissionType.SMS_GROUP -> {
                 requestCode = PermissionCode.SMS_GROUP.requestCode
-
                 initiatePermissionRequest(arrayOf(PermissionUri.READ_SMS.requestUri,
                         PermissionUri.SEND_SMS.requestUri,
                         PermissionUri.RECEIVE_MMS.requestUri,
@@ -204,12 +204,14 @@ class MakePermissionRequest:PermissionResultHelper() {
                 initiatePermissionRequest(PermissionUri.RECORD_AUDIO.requestUri, activity, PermissionType.RECORD_AUDIO, isCheckForRationState)
             }
 
-            PermissionType.PHONE_GROUP -> initiatePermissionRequest(arrayOf(PermissionUri.CALL_PHONE.requestUri,
-                    PermissionUri.USE_SIP.requestUri,
-                    PermissionUri.READ_PHONE_STATE.requestUri,
-                    PermissionUri.READ_CALL_LOG.requestUri,
-                    PermissionUri.ADD_VOICEMAIL.requestUri,
-                    PermissionUri.WRITE_CALL_LOG.requestUri), activity, PermissionType.PHONE_GROUP, isCheckForRationState)
+            PermissionType.PHONE_GROUP -> {
+                requestCode=PermissionCode.PHONE_GROUP.requestCode
+                initiatePermissionRequest(arrayOf(PermissionUri.CALL_PHONE.requestUri,
+                        PermissionUri.USE_SIP.requestUri,
+                        PermissionUri.READ_PHONE_STATE.requestUri,
+                        PermissionUri.READ_CALL_LOG.requestUri,
+                        PermissionUri.WRITE_CALL_LOG.requestUri), activity, PermissionType.PHONE_GROUP, isCheckForRationState)
+            }
 
             PermissionType.CALL_LOG_GROUP -> {
                 requestCode = PermissionCode.CALL_LOG_GROUP.requestCode
@@ -237,11 +239,6 @@ class MakePermissionRequest:PermissionResultHelper() {
                 initiatePermissionRequest(PermissionUri.READ_CALL_LOG.requestUri, activity, PermissionType.READ_CALL_LOG, isCheckForRationState)
             }
 
-            PermissionType.ADD_VOICE_MAIL -> {
-                requestCode = PermissionCode.ADD_VOICE_MAIL.requestCode
-                initiatePermissionRequest(PermissionUri.ADD_VOICEMAIL.requestUri, activity, PermissionType.ADD_VOICE_MAIL, isCheckForRationState)
-            }
-
             PermissionType.WRITE_CALL_LOG -> {
                 requestCode = PermissionCode.WRITE_CALL_LOG.requestCode
                 initiatePermissionRequest(PermissionUri.WRITE_CALL_LOG.requestUri, activity, PermissionType.WRITE_CALL_LOG, isCheckForRationState)
@@ -259,7 +256,7 @@ class MakePermissionRequest:PermissionResultHelper() {
         {
             val notDeclaredPermissions=isPemissionAddedInManifest(permission,activity)
             if(notDeclaredPermissions==null || notDeclaredPermissions.size>0) {
-                var notFoundPermission: String = ""
+                var notFoundPermission = ""
                 notDeclaredPermissions?.iterator()?.forEach {
                     notFoundPermission = notFoundPermission + it + "\n"
                 }
@@ -267,7 +264,7 @@ class MakePermissionRequest:PermissionResultHelper() {
             }
         }
         //getting permission request code according to  permission type
-        permission?.let { permissions->requestCode?.let { takePermission(permissions, it, activity) }}
+        permission?.let { permissions->requestCode.let { takePermission(permissions, it, activity) }}
     }
 
 
@@ -400,7 +397,6 @@ class MakePermissionRequest:PermissionResultHelper() {
                     addMultiplePermissionUri(PermissionUri.CALL_PHONE.requestUri, activity)
                     addMultiplePermissionUri(PermissionUri.READ_CALL_LOG.requestUri, activity)
                     addMultiplePermissionUri(PermissionUri.WRITE_CALL_LOG.requestUri, activity)
-                    addMultiplePermissionUri(PermissionUri.ADD_VOICEMAIL.requestUri, activity)
                 }
 
                 PermissionType.CALL_LOG_GROUP -> {
@@ -430,10 +426,6 @@ class MakePermissionRequest:PermissionResultHelper() {
                     addMultiplePermissionUri(PermissionUri.WRITE_CALL_LOG.requestUri, activity)
                 }
 
-                PermissionType.ADD_VOICE_MAIL -> {
-
-                    addMultiplePermissionUri(PermissionUri.ADD_VOICEMAIL.requestUri, activity)
-                }
                 PermissionType.SENSOR -> addMultiplePermissionUri(PermissionUri.SENSOR.requestUri, activity)
 
 
@@ -448,7 +440,7 @@ class MakePermissionRequest:PermissionResultHelper() {
         {
             val notDeclaredPermissions=isPemissionAddedInManifest(permissionUri.toTypedArray(),activity)
             if(notDeclaredPermissions==null || notDeclaredPermissions.size>0) {
-                var notFoundPermission: String = ""
+                var notFoundPermission = ""
                 notDeclaredPermissions?.iterator()?.forEach {
                     notFoundPermission = notFoundPermission + it + "\n"
                 }
@@ -657,7 +649,7 @@ class MakePermissionRequest:PermissionResultHelper() {
         val packageInfo=activity.packageManager.getPackageInfo(activity.packageName,PackageManager.GET_PERMISSIONS)
         val permission=packageInfo.requestedPermissions
         if(permission==null || permission.isEmpty())
-            return permission
+            return null
         requestedPermissions.filter {request-> !permission.contains(request) }.also {
             return it.toTypedArray()
         }

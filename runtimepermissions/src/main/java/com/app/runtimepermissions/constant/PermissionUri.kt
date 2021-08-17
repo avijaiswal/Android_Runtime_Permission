@@ -131,11 +131,6 @@ enum class PermissionUri(val requestUri: String) {
      */
     WRITE_CALL_LOG(Manifest.permission.WRITE_CALL_LOG),
 
-    /**
-     * enum constant to get ADD_VOICEMAIL permission uri
-     * This permission uri  comes under group of PHONE permission
-     */
-    ADD_VOICEMAIL(Manifest.permission.ADD_VOICEMAIL),
 
     /**
      * enum constant to get USE_SIP permission uri

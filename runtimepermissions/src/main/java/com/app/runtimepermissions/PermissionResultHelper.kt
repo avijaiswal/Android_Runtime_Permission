@@ -131,8 +131,6 @@ open class PermissionResultHelper() {
 
             PermissionCode.WRITE_CALL_LOG.requestCode -> PermissionType.WRITE_CALL_LOG
 
-            PermissionCode.ADD_VOICE_MAIL.requestCode -> PermissionType.ADD_VOICE_MAIL
-
             PermissionCode.CALL_LOG_GROUP.requestCode -> PermissionType.CALL_LOG_GROUP
 
             else-> null
@@ -251,7 +249,6 @@ open class PermissionResultHelper() {
 
             PermissionUri.WRITE_CALL_LOG.requestUri -> PermissionType.WRITE_CALL_LOG
 
-            PermissionUri.ADD_VOICEMAIL.requestUri -> PermissionType.ADD_VOICE_MAIL
             else -> null
         }
 

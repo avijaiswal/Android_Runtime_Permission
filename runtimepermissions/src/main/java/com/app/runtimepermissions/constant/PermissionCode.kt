@@ -176,20 +176,13 @@ enum class PermissionCode(val requestCode: Int) {
     WRITE_CALL_LOG(0X5027),
 
 
-
-    /**
-     * constant to identify request code for ADD_VOICE_MAIL permission
-     * @see PermissionType.ADD_VOICE_MAIL
-     */
-    ADD_VOICE_MAIL(0X5028),
-
     /**
      * constant to identify request code for USE_SIP permission
      * @see PermissionType.USE_SIP
      */
-    USE_SIP(0X5029),
+    USE_SIP(0X5028),
 
     //constant to identify if user request multiple permission at once
-    MULTIPLE_PERMISSION_REQUEST_CODE(0X5030)
+    MULTIPLE_PERMISSION_REQUEST_CODE(0X5029)
 
 }

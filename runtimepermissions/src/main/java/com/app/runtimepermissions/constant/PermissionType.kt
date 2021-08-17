@@ -159,11 +159,6 @@ enum class PermissionType {
     WRITE_CALL_LOG,
 
     /**
-     * Enum constant to identify request for ADD_VOICE_MAIL permission
-     */
-    ADD_VOICE_MAIL,
-
-    /**
      * Enum constant to identify request for USE_SIP permission
      */
     USE_SIP,
