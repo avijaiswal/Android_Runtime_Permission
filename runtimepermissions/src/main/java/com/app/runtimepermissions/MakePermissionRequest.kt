@@ -4,13 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.provider.Settings
 import android.util.Log
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import com.app.runtimepermission.PermissionResultHelper
 import com.app.runtimepermission.constant.PermissionUri
+import com.app.runtimepermissions.Util.PermissionNotAddedInManifest
 import com.app.runtimepermissions.constant.PermissionCode
 import com.app.runtimepermissions.constant.PermissionType
 import com.app.runtimepermissions.interfaces.IPermissionCallbacks
@@ -39,7 +39,7 @@ class MakePermissionRequest:PermissionResultHelper() {
     //creating singleton object of this class
     companion object {
         val TAG=MakePermissionRequest::class.simpleName
-        const val SETTINGS_INTENT_REQUEST_CODE = 5000
+        const val SETTINGS_INTENT_REQUEST_CODE = 0X5000
 
         //declaring instance variable of this class as volatile for thread safety
         @Volatile private var instance: MakePermissionRequest? = null
@@ -83,6 +83,7 @@ class MakePermissionRequest:PermissionResultHelper() {
      * @see PermissionType
      * -->
      */
+    @Throws(PermissionNotAddedInManifest::class)
     fun requestForPermission(permissionType: PermissionType, activity: Activity, isCheckForRationState: Boolean)
     {
         isCheckForAlwaysHide=false
@@ -252,7 +253,19 @@ class MakePermissionRequest:PermissionResultHelper() {
             }
 
         }
+        //below code will throw error when requested permissions uri are not added in manifest, user will required to handle it in try catch block
 
+        if(permission!=null )
+        {
+            val notDeclaredPermissions=isPemissionAddedInManifest(permission,activity)
+            if(notDeclaredPermissions==null || notDeclaredPermissions.size>0) {
+                var notFoundPermission: String = ""
+                notDeclaredPermissions?.iterator()?.forEach {
+                    notFoundPermission = notFoundPermission + it + "\n"
+                }
+                throw PermissionNotAddedInManifest("Requested permissions are not added in manifest Please add following permission in you manifest \n" +notFoundPermission)
+            }
+        }
         //getting permission request code according to  permission type
         permission?.let { permissions->requestCode?.let { takePermission(permissions, it, activity) }}
     }
@@ -275,7 +288,10 @@ class MakePermissionRequest:PermissionResultHelper() {
      * In this method we are generating permission uri and permission request code according to requested permission type
      * @see PermissionType
      * -->
+     *
+     * Before calling this method just make sure you have added permission in your app manifest file otherwise it will throw error
      */
+    @Throws(PermissionNotAddedInManifest::class)
     fun requestForPermission(permissionType: Array<PermissionType>, activity: Activity, isCheckForRationState: Boolean)
     {
         isCheckForAlwaysHide=false
@@ -425,6 +441,19 @@ class MakePermissionRequest:PermissionResultHelper() {
 
             }
             permission?.let { permissionUri.add(it)}
+        }
+
+        //below code will throw error when requested permissions uri are not added in manifest, user will required to handle it in try catch block
+        if(permissionUri.size>0)
+        {
+            val notDeclaredPermissions=isPemissionAddedInManifest(permissionUri.toTypedArray(),activity)
+            if(notDeclaredPermissions==null || notDeclaredPermissions.size>0) {
+                var notFoundPermission: String = ""
+                notDeclaredPermissions?.iterator()?.forEach {
+                    notFoundPermission = notFoundPermission + it + "\n"
+                }
+                throw PermissionNotAddedInManifest("Requested permissions are not added in manifest Please add following permission in you manifest \n" +notFoundPermission)
+            }
         }
 
         val requestCode=PermissionCode.MULTIPLE_PERMISSION_REQUEST_CODE.requestCode
@@ -599,9 +628,38 @@ class MakePermissionRequest:PermissionResultHelper() {
         onRequestPermissionsResult(requestCode, permissions, grantResults, iCallBack, activity)
     }
 
+
+    /**
+     * <Use of method>
+     * <!--
+     * Method will call to open app permission settings to allow permission manually when permission is in don't ask me again state
+     * -->
+     * @param activity //activity reference to fetch package name and to launch settings activity
+     */
     fun openSettings(activity: Activity)
     {
-        startActivityForResult(activity,Intent(Settings.ACTION_SETTINGS), SETTINGS_INTENT_REQUEST_CODE,null)
+        val intent = Intent()
+        intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+        val uri = Uri.fromParts("package", activity.packageName, null)
+        intent.data = uri
+        activity.startActivityForResult(intent, SETTINGS_INTENT_REQUEST_CODE)
     }
 
+
+    /**
+     * <Use of <Method>
+     * <!--
+     * This method is used to check requested permissions are added in manifest or not as it will required to add runtime permission in app manifest also
+     * -->
+     */
+    fun isPemissionAddedInManifest(requestedPermissions: Array<String>,activity: Activity): Array<String>?
+    {
+        val packageInfo=activity.packageManager.getPackageInfo(activity.packageName,PackageManager.GET_PERMISSIONS)
+        val permission=packageInfo.requestedPermissions
+        if(permission==null || permission.isEmpty())
+            return permission
+        requestedPermissions.filter {request-> !permission.contains(request) }.also {
+            return it.toTypedArray()
+        }
+    }
 }
