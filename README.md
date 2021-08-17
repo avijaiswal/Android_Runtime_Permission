@@ -8,8 +8,6 @@ Very short code to request for runtime permisson
 
 Hanlded "don't ask again" and Rational condition for any type of runtime permissions.
 
-Can request from any context (Activity, Service, Fragment, etc).
-
 Developer can also check multiple permissions at once. 
 
 Handled "don't akk again" for multiple permission if all the requested permission is denied and in "don't ask again" state
@@ -101,4 +99,8 @@ STEP 7: In your Activity or Fragment override onRequestPermissionsResult method 
         MakePermissionRequest.getInstance().onRequestPermissionsResult(requestCode, permissions as Array<String>,grantResults,this)
     }
 
-Open source
+
+
+To Open App permission settings use below code with your activity reference 
+
+                MakePermissionRequest.getInstance().openSettings(this@MainActivity)
