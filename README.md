@@ -14,7 +14,6 @@ Handled "don't akk again" for multiple permission if all the requested permissio
 
 Written in Kotlin 
 
-Support permission updates from Android 11 
 
 Supports major runtime permission like : **CAMERA, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE , ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION , READ_CALENDAR, WRITE_CALENDAR , READ_CONTACTS, WRITE_CONTACTS, GET_ACCOUNTS, RECORD_AUDIO , SEND_SMS, READ_SMS, RECEIVE_SMS, RECEIVE_WAP_PUSH, RECEIVE_MMS, BODY_SENSORS, READ_PHONE_STATE, CALL_PHONE, READ_CALL_LOG, WRITE_CALL_LOG, ADD_VOICEMAIL, USE_SIP
 **   
@@ -34,7 +33,7 @@ STEP 1. Add the JitPack repository to your build file
 STEP 2. Add the dependency
       
       dependencies {
-	        implementation 'com.github.avijaiswal:Android_Runtime_Permission:1.0.1'
+	        implementation 'com.github.avijaiswal:Android_Runtime_Permission:1.0.2'
 	}
 
 
